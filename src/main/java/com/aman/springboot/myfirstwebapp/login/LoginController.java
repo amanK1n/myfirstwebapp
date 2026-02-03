@@ -27,13 +27,13 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="login",method = RequestMethod.POST)
-	public String goToWelcomePage(@RequestParam String name, @RequestParam String password, ModelMap model) {
-		System.out.println("name param: " + name);
+	public String goToWelcomePage(@RequestParam String name1, @RequestParam String password, ModelMap model) {
+		System.out.println("name param: " + name1);
 		System.out.println("passswwoordd param: " + password);
-		model.put("name", name);
+		model.put("name2", name1);
 		//model.put("password", password);
 		
-		if (authenticationService.authenticate(name, password)) {
+		if (authenticationService.authenticate(name1, password)) {
 			return "welcome";
 		}
 		model.put("errorMessage", "Invalid Credentials!!");
