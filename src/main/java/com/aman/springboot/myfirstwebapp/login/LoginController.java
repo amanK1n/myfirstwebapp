@@ -5,8 +5,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("name2") // It(name2) is the var put in modelmap for jsp, stored across sessions , name1 will not work
 public class LoginController {
 
 	private AuthenticationService authenticationService;
