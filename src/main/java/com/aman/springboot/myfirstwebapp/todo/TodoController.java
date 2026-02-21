@@ -21,4 +21,11 @@ public class TodoController {
 		model.put("todos", todos);
 		return "listTodos";
 	}
+	
+	@RequestMapping("add-todo")
+	public String showNewTodoPage() {
+		
+		return "listTodos";
+	}
+	
 }

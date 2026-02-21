@@ -1,19 +1,16 @@
 <html>
 <head>
-<title>Login Page - JSP</title>
+<link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css"
+	rel="stylesheet">
+<title>Login Page</title>
 </head>
 <body>
-	<div>
-	<h1>Welcome to in28mins</h1>
-	</div>
-	<div>
-	<h2>Your name is: ${name2}</h2>
-	</div>
-	<%-- <div>
+	<div class="container">
+		<h1>Welcome ${name2}</h1>
+		<%-- <div>
 	<h2>Your pass is: ${password}</h2>
 	</div> --%>
-	<div>
-	<a href="list-todos">Click here! </a> to manage your Todos!
+		<a href="list-todos">Click here! </a> to manage your Todos!
 	</div>
 </body>
 </html>
