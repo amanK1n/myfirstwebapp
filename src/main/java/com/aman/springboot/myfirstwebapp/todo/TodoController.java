@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
 
@@ -42,10 +43,10 @@ public class TodoController {
 			System.out.println("Has Error in BINDING RES");
 			return "todo"; 
 		}
-		String username = (String)model.get("name2");
+		String username = (String)model.get("name2"); // it is from saved global var @SessionAttributes in logincont.java
 		System.out.println("Username from TODO page " + username);
 		System.out.println("#######********_____==++++==_____#######********");
-		todoService.addTodo(username , todo.getDescription(), LocalDate.now().plusYears(1), false);
+		todoService.addTodo(username , todo.getDescription(), todo.getTargetDate(), false);
 		return "redirect:list-todos";
 	}
 	@RequestMapping("delete-todo")
@@ -53,5 +54,30 @@ public class TodoController {
 		todoService.deleteById(id);
 		return "redirect:list-todos";
 	}
+	
+	@RequestMapping(value="update-todo", method = RequestMethod.GET)
+	public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
+		Todo todo1 = todoService.findById(id);
+		model.addAttribute("todo", todo1); // "todo" should match the model attribute in jsp; todo1 is defined here only
+		return "todo";
+	}
+	
+	
+	@RequestMapping(value="update-todo", method = RequestMethod.POST)
+	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
+		if(result.hasErrors()) {
+			System.out.println("Has Error in BINDING RES");
+			return "todo"; 
+		}
+		String username = (String)model.get("name2"); // it is from saved global var @SessionAttributes in logincont.java
+		todo.setUsername(username);
+		todoService.updateTodo(todo);
+		return "redirect:list-todos";
+	}
+	
+	
+	
+	
+	
 	
 }
