@@ -15,23 +15,24 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import jakarta.validation.Valid;
 
-//@Controller
+@Controller
 @SessionAttributes("name2")
-public class TodoController {
-	public TodoController(TodoService todoService) {
+public class TodoControllerJpa {
+	public TodoControllerJpa(TodoService todoService, TodoRepository todoRepository) {
 		super();
 		this.todoService = todoService;
+		this.todoRepository = todoRepository;
 	}
 
 	private TodoService todoService;
-
+    private TodoRepository todoRepository;
 	@RequestMapping("list-todos")
 	public String listAllTodos(ModelMap model) {
 		String username = getLoggedInUsername(model);
 		System.out.println("$$$####$$$$$$####$*********");
 		System.out.println("Username: SecurityContextHolder: " + username);
 		System.out.println("$$$####$$$$$$####$*********");
-		List<Todo> todos = todoService.findByUsername(username);
+		List<Todo> todos = todoRepository.findByUsername(username);
 		model.put("todos", todos);
 		return "listTodos";
 	}

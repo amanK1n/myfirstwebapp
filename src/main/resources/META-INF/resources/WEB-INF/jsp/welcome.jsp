@@ -1,10 +1,5 @@
-<html>
-<head>
-<link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css"
-	rel="stylesheet">
-<title>Login Page</title>
-</head>
-<body>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 	<div class="container">
 		<h1>Welcome ${name2}</h1>
 		<%-- <div>
@@ -12,5 +7,4 @@
 	</div> --%>
 		<a href="list-todos">Click here! </a> to manage your Todos!
 	</div>
-</body>
-</html>
+<%@ include file="common/footer.jspf" %>
